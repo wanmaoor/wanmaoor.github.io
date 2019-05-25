@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html lang xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <title>CORS跨域初步理解 - Oliver</title>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Wannmaor">
+<meta name="description" content="CORS 初步探究跨域资源分享本文灵感来源于 Do you really know CORS?  一文
+什么是同域...">
+<meta name="keywords" content>
+
+    <meta charset="utf-8">
+    <meta name="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/journal.css?15913669">
+
+<script src="/js/loadCSS.js"></script>
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Material+Icons");
+    (function (d) {
+        var config = {
+                kitId: 'dwg1tuc',
+                scriptTimeout: 3000,
+                async: true
+            },
+            h = d.documentElement, t = setTimeout(function () {
+                h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+            }, config.scriptTimeout), tk = d.createElement("script"), f = false,
+            s = d.getElementsByTagName("script")[0], a;
+        h.className += " wf-loading";
+        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function () {
+            a = this.readyState;
+            if (f || a && a != "complete" && a != "loaded") return;
+            f = true;
+            clearTimeout(t);
+            try {
+                Typekit.load(config)
+            } catch (e) {
+            }
+        };
+        s.parentNode.insertBefore(tk, s)
+    })(document);
+</script>
+<noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Anonymous+Pro:400|Material+Icons">
+</noscript>
+</head>
+<body>
+<div id="top"></div>
+<div id="app">
+<div class="single-column-drawer-container" ref="drawer" v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            <a class="a-block drawer-menu-item false" href="http://yoursite.com">
+                Home
+            </a>
+            <a class="a-block drawer-menu-item false" href="/archives">
+                Archive
+            </a>
+
+            
+            
+
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="/">
+            Oliver
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead" v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="/">
+        <div class="single-column-header-title">Oliver</div>
+        <div class="single-column-header-subtitle">This is Olver&#39;s blog</div>
+    </a>
+</div>
+<div ref="sideContainer" class="side-container">
+    <a class="a-block nav-head false" href="/">
+        <div class="nav-title">
+            Oliver.
+        </div>
+        <div class="nav-subtitle">
+            隻言片語<br>於此匯聚
+        </div>
+    </a>
+
+    <div class="nav-link-list">
+        <a class="a-block no-tint nav-link-item false" href="/archives">
+            Archive
+        </a>
+
+        
+        
+
+        
+    </div>
+
+    
+    <div class="nav-footer">
+        Proudly published with Hexo<br>
+        
+        Theme <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> by <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a><br>
+        
+        &copy; 2019 <a href="http://yoursite.com">Oliver</a>
+    </div>
+</div>
+<div ref="extraContainer" class="extra-container">
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+
+        
+    </div>
+</div>
+
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            <div class="post-head-wrapper" style="background-image: url('/2019/05/06/CORS跨域初步理解/1.svg')">
+                <div class="post-title">
+                    CORS跨域初步理解
+                    <div class="post-meta">
+                        <time datetime="2019-05-06T13:45:35.000Z" itemprop="datePublished">
+                            2019-05-06 21:45
+                        </time>&nbsp;
+                        
+                        
+                        <i class="material-icons" style>folder</i>
+                        
+                        <a href="/categories/FrontEnd/">FrontEnd</a>
+                        
+                        
+    
+                        
+                        
+                        <i class="material-icons" style>label</i>
+                        
+                        <a href="/tags/FrontEnd/">-FrontEnd</a>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+    
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h1 id="CORS-初步探究跨域资源分享"><a href="#CORS-初步探究跨域资源分享" class="headerlink" title="CORS 初步探究跨域资源分享"></a>CORS 初步探究跨域资源分享</h1><p>本文灵感来源于 <a href="http://performantcode.com/web/do-you-really-know-cors" target="_blank" rel="noopener">Do you really know CORS? </a> 一文</p>
+<h2 id="什么是同域？同源政策？"><a href="#什么是同域？同源政策？" class="headerlink" title="什么是同域？同源政策？"></a>什么是同域？同源政策？</h2><p>同域就是<strong>同协议</strong>， <strong>同hostname</strong>， <strong>同端口</strong> 的 domain。<strong>同域政策</strong> (SOP, Same Origin Policy) 规定只有同域之间才能互相进行资源访问。超出此范围都算<strong>跨域请求</strong> (CORS, Cross-Origin Resource Sharing)。</p>
+<p><strong>同源政策</strong> 只存在于浏览器-服务器之间，curl，postman等软件不会受其影响。</p>
+<h2 id="如何实现跨域请求？"><a href="#如何实现跨域请求？" class="headerlink" title="如何实现跨域请求？"></a>如何实现跨域请求？</h2><p>跨域分为两种： 简单请求和预检验请求。两者关系互斥， 不存在任何交集</p>
+<h3 id="简单请求-Simple-Request"><a href="#简单请求-Simple-Request" class="headerlink" title="简单请求(Simple Request)"></a>简单请求(Simple Request)</h3><p>只要不触发预检验的都是简单请求，以下是触发简单请求的条件：</p>
+<ul>
+<li>使用下列方法之一：<ul>
+<li><code>GET</code></li>
+<li><code>HEAD</code></li>
+<li><code>POST</code></li>
+</ul>
+</li>
+<li><code>Content-Type</code> 仅限于以下几种：<ul>
+<li><code>text/plain</code></li>
+<li><code>multipart/form-data</code></li>
+<li><code>application/x-www-form-urlencoded</code></li>
+</ul>
+</li>
+<li>除了规范里定义的subset之外没有任何<code>header</code></li>
+</ul>
+<h3 id="预检验请求-Preflighted-Request"><a href="#预检验请求-Preflighted-Request" class="headerlink" title="预检验请求(Preflighted Request)"></a>预检验请求(Preflighted Request)</h3><p>那么很明显，只要不符合简单请求的都能划分到预检验请求中。</p>
+<p>在预检验中，浏览器会预先发送一个 OPTIONS 请求，作为预先检验，从而使服务器判定这个请求是否安全。如果你的origin在服务器的<code>Access-Control-Allow-Origin</code> 里，那么你就被允许跨域访问了。接下来就可以进行发送正式的request请求了。</p>
+<p>预检验请求每次都会被重新加载，为了减少重载次数可以设置<code>Access-Control-Max-Age</code> 响应头，设置最大缓存时间。</p>
+<h2 id="CORS安全吗？"><a href="#CORS安全吗？" class="headerlink" title="CORS安全吗？"></a>CORS安全吗？</h2><p>安全。当初没有同源政策的限制时，只要hacker能获取你的cookie就能为所欲为。这就是同源政策存在的原因。有人会说既然CORS能够实现跨域访问，那么之前的问题不就又出现了吗？没错，It’s back again。但<strong>CORS没有在跨域请求里包含了cookie</strong>， 这是和以前最大的区别。</p>
+<p>当然，你想携带cookie也是允许的。但出于安全的考虑，需要在客户端和服务端设置验证功能，当<code>Access-Control-Allow-Credentials</code> 被设置为<code>true</code>时，也能进行跨域请求。问题也出在这儿，许多服务器会盲目地根据用户的Origin Value来把用户添加进<code>Access-Control-Allow-Origin</code> 里，这时只要用户稍作修改也是能够轻易攻破的，这也是一个安全问题。</p>
+
+                </div>
+            </div>
+    
+            <nav class="post-pagination">
+    
+    <a class="newer-posts" href="/2019/05/08/实现流畅顺滑的滚动效果的两种方式/">
+        Previous post<br>实现流畅顺滑的滚动效果的两种方式
+    </a>
+    
+    <span class="page-number"></span>
+    
+    <a class="older-posts" href="/2019/03/15/DOM系列/">
+        Next post<br>DOM 系列
+    </a>
+    
+</nav>
+
+    
+            
+
+
+        </div>
+    </div>
+    <div class="single-column-footer">
+    Proudly published with Hexo<br>
+    
+    Theme <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> by <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a><br>
+    
+    &copy; 2019 <a href="http://yoursite.com">Oliver</a>
+</div>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js" integrity="sha256-EGs9T1xMHdvM1geM8jPpoo8EZ1V1VRsmcJz8OByENLA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@14.2.1/dist/smooth-scroll.polyfills.min.js" integrity="sha256-CI4Gq5E0io1Pv0xM3qPM+NUIOhbIBvC3GiN1Y4KhXpw=" crossorigin="anonymous"></script>
+<script src="/js/journal.js?93094799"></script>
+
+
+
+</body>
+</html>
