@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-25T04:57:12.382Z</updated>
+  <updated>2019-05-27T03:13:30.117Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>var, let, const</title>
+    <link href="http://yoursite.com/2019/05/27/var-let-const/"/>
+    <id>http://yoursite.com/2019/05/27/var-let-const/</id>
+    <published>2019-05-27T02:36:10.000Z</published>
+    <updated>2019-05-27T03:13:30.117Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="var"><a href="#var" class="headerlink" title="var"></a><code>var</code></h1><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>当你使用<code>var</code>去定义变量时, 在编译JS时变量会全部提升到当前作用域的顶部.</p><p>同时在全局作用域定义的变量都会成为<code>window</code>的属性</p><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><h4 id="ES6之前"><a href="#ES6之前" class="headerlink" title="ES6之前"></a>ES6之前</h4><p>只有<strong>全局作用域</strong>和 <strong>函数作用域</strong></p><h4 id="ES6之后"><a href="#ES6之后" class="headerlink" title="ES6之后"></a>ES6之后</h4><p><strong>全局作用域</strong> 和 <strong>函数作用域</strong> 和 <strong>块级作用域</strong></p><h2 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h2><p>函数声明会提升, 函数表达式不会</p><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">/* Function declaration */</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "bar"</span><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment" spellcheck="true">/* Function expression */</span><span class="token function">baz</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// TypeError: baz is not a function</span><span class="token keyword">var</span> baz <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'bar2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="let"><a href="#let" class="headerlink" title="let"></a><code>let</code></h1><p>与<code>var</code>最大区别是没有变量提升</p><h1 id="const"><a href="#const" class="headerlink" title="const"></a><code>const</code></h1><p>与<code>let</code>区别在于只读不能修改</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;var&quot;&gt;&lt;a href=&quot;#var&quot; class=&quot;headerlink&quot; title=&quot;var&quot;&gt;&lt;/a&gt;&lt;code&gt;var&lt;/code&gt;&lt;/h1&gt;&lt;h2 id=&quot;变量提升&quot;&gt;&lt;a href=&quot;#变量提升&quot; class=&quot;headerlink&quot; title=&quot;
+      
+    
+    </summary>
+    
+      <category term="FrontEnd" scheme="http://yoursite.com/categories/FrontEnd/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>HTML--forms</title>
