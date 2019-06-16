@@ -4,12 +4,12 @@
 <html lang xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head><meta name="generator" content="Hexo 3.8.0">
-    <title>实现流畅顺滑的滚动效果的两种方式 - Oliver</title>
+    <title>Use of &#39;that of&#39; - Oliver</title>
 <meta charset="utf-8">
 <meta name="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Wannmaor">
-<meta name="description" content="CSS的scroll-behavior: smooth优点：没有JS代码，纯CSS实现。设置简单。
-缺点：目前兼容...">
+<meta name="description" content="有时我们会见到这样的句子:
+Adam&amp;#39;s problem is similar to John&amp;#39;s...">
 <meta name="keywords" content>
 
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
     <meta name="renderer" content="webkit">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/journal.css?89215235">
+<link rel="stylesheet" href="/css/journal.css?96862951">
 
 <script src="/js/loadCSS.js"></script>
 <script>
@@ -141,18 +141,18 @@
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
         <div class="post">
-            <div class="post-head-wrapper" style="background-image: url('/2019/05/08/实现流畅顺滑的滚动效果的两种方式/4.png')">
+            <div class="post-head-wrapper-text-only" style="background-image: url('')">
                 <div class="post-title">
-                    实现流畅顺滑的滚动效果的两种方式
+                    Use of &#39;that of&#39;
                     <div class="post-meta">
-                        <time datetime="2019-05-08T04:10:44.000Z" itemprop="datePublished">
-                            2019-05-08 12:10
+                        <time datetime="2019-06-16T06:05:51.000Z" itemprop="datePublished">
+                            2019-06-16 14:05
                         </time>&nbsp;
                         
                         
                         <i class="material-icons" style>folder</i>
                         
-                        <a href="/categories/FrontEnd/">FrontEnd</a>
+                        <a href="/categories/English/">English</a>
                         
                         
     
@@ -160,7 +160,7 @@
                         
                         <i class="material-icons" style>label</i>
                         
-                        <a href="/tags/CSS/">CSS</a>
+                        <a href="/tags/Grammar/">Grammar</a>
                         
                         
                     </div>
@@ -169,25 +169,22 @@
     
             <div class="post-body-wrapper">
                 <div class="post-body">
-                    <h2 id="CSS的scroll-behavior-smooth"><a href="#CSS的scroll-behavior-smooth" class="headerlink" title="CSS的scroll-behavior: smooth"></a>CSS的<code>scroll-behavior: smooth</code></h2><p>优点：没有JS代码，纯CSS实现。设置简单。</p>
-<p>缺点：目前兼容性不好，只能支持FireFox 36, Chrome61以上版本的浏览器</p>
-<p><a href="https://jsbin.com/sefimum/1" target="_blank" rel="noopener">demo 地址</a></p>
-<p>实现方式：在container的div里使用<code>scroll-behavior: smooth</code> 即可。另外，当使用滚动条滚动网页时，两个section都出现在viewport里，为了使其自动向下或向上滑移。需要在container里设置<code>scroll-snap-type: y mandatory</code>, 在section里设置<code>scroll-snap-align: center</code> </p>
-<h2 id="smooth-scroll-JS-库"><a href="#smooth-scroll-JS-库" class="headerlink" title="smooth-scroll JS 库"></a>smooth-scroll JS 库</h2><p>按照<a href="https://github.com/cferdinandi/smooth-scroll" target="_blank" rel="noopener">文档</a>提示操作即可</p>
-
+                    <p>有时我们会见到这样的句子:</p>
+<pre><code>Adam&#39;s problem is similar to John&#39;s. //Adam的问题跟John的问题很相似
+</code></pre><p><code>John&#39;s</code>只是一个简单的名词, 可是当我们需要一个长句时该怎么办呢?依葫芦画瓢, 还是这样来:</p>
+<pre><code>Adam&#39;s problem is similar to the majority of people in the western world&#39;s. //Adam的问题和大多数西方世界的人很像
+</code></pre><p><strong>错!!!</strong>不能这样表达, 应该使用<strong><code>that of</code></strong>:</p>
+<pre><code>Adam&#39;s problem is similar to that of the majority of people in the western world.
+</code></pre>
                 </div>
             </div>
     
             <nav class="post-pagination">
     
-    <a class="newer-posts" href="/2019/05/08/this-arguments/">
-        前の記事<br>this-arguments
-    </a>
-    
     <span class="page-number"></span>
     
-    <a class="older-posts" href="/2019/05/06/CORS跨域初步理解/">
-        次の記事<br>CORS跨域初步理解
+    <a class="older-posts" href="/2019/06/16/Slider-Page/">
+        次の記事<br>Slider Page
     </a>
     
 </nav>
@@ -213,7 +210,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@14.2.1/dist/smooth-scroll.polyfills.min.js" integrity="sha256-CI4Gq5E0io1Pv0xM3qPM+NUIOhbIBvC3GiN1Y4KhXpw=" crossorigin="anonymous"></script>
-<script src="/js/journal.js?43896780"></script>
+<script src="/js/journal.js?90842715"></script>
 
 
 

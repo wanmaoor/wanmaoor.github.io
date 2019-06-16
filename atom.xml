@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-16T02:55:01.526Z</updated>
+  <updated>2019-06-16T06:15:03.178Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Use of &#39;that of&#39;</title>
+    <link href="http://yoursite.com/2019/06/16/Use-of-that-of/"/>
+    <id>http://yoursite.com/2019/06/16/Use-of-that-of/</id>
+    <published>2019-06-16T06:05:51.000Z</published>
+    <updated>2019-06-16T06:15:03.178Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时我们会见到这样的句子:</p><pre><code>Adam&#39;s problem is similar to John&#39;s. //Adam的问题跟John的问题很相似</code></pre><p><code>John&#39;s</code>只是一个简单的名词, 可是当我们需要一个长句时该怎么办呢?依葫芦画瓢, 还是这样来:</p><pre><code>Adam&#39;s problem is similar to the majority of people in the western world&#39;s. //Adam的问题和大多数西方世界的人很像</code></pre><p><strong>错!!!</strong>不能这样表达, 应该使用<strong><code>that of</code></strong>:</p><pre><code>Adam&#39;s problem is similar to that of the majority of people in the western world.</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有时我们会见到这样的句子:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Adam&amp;#39;s problem is similar to John&amp;#39;s. //Adam的问题跟John的问题很相似
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;John&amp;#39;s&lt;/code&gt;只是一
+      
+    
+    </summary>
+    
+      <category term="English" scheme="http://yoursite.com/categories/English/"/>
+    
+    
+      <category term="Grammar" scheme="http://yoursite.com/tags/Grammar/"/>
+    
+  </entry>
   
   <entry>
     <title>Slider Page</title>
