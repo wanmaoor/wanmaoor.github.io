@@ -4,11 +4,13 @@
 <html lang xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head><meta name="generator" content="Hexo 3.8.0">
-    <title>記事一覧 - Oliver</title>
+    <title>Slider Page - Oliver</title>
 <meta charset="utf-8">
 <meta name="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Wannmaor">
-<meta name="description" content="This is Olver&#39;s blog">
+<meta name="description" content="网页链接Slider Page
+源码Source Code
+如何实现点击切换的?如何显示网页里有5个可以切换的图片...">
 <meta name="keywords" content>
 
     <meta charset="utf-8">
@@ -18,7 +20,7 @@
     <meta name="renderer" content="webkit">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/journal.css?51302713">
+<link rel="stylesheet" href="/css/journal.css?88584484">
 
 <script src="/js/loadCSS.js"></script>
 <script>
@@ -62,7 +64,7 @@
             <a class="a-block drawer-menu-item false" href="http://yoursite.com">
                 ホーム
             </a>
-            <a class="a-block drawer-menu-item active" href="/archives">
+            <a class="a-block drawer-menu-item false" href="/archives">
                 記事一覧
             </a>
 
@@ -106,7 +108,7 @@
     </a>
 
     <div class="nav-link-list">
-        <a class="a-block no-tint nav-link-item active" href="/archives">
+        <a class="a-block no-tint nav-link-item false" href="/archives">
             記事一覧
         </a>
 
@@ -134,141 +136,70 @@
         </a>
 
         
-        
-        <div class="pagination-indicator">
-            <span style="text-align: center">
-                2<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>2
-            </span>
-        </div>
-        
-
-        
-        <a class="pagination-action" href="/archives/">
-            <i class="material-icons pagination-action-icon">
-                chevron_left
-            </i>
-        </a>
-        
-
-        
-        
     </div>
 </div>
 
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        
-        
-        <div class="post-item-wrapper post-item-wrapper-no-hover">
-            <div class="post-item post-item-no-gaps">
-                <div class="post-item-info-wrapper">
-                    <div class="post-item-title  post-item-title-small">
+        <div class="post">
+            <div class="post-head-wrapper" style="background-image: url('/2019/06/16/Slider-Page/1.png')">
+                <div class="post-title">
+                    Slider Page
+                    <div class="post-meta">
+                        <time datetime="2019-06-16T02:13:01.000Z" itemprop="datePublished">
+                            2019-06-16 10:13
+                        </time>&nbsp;
                         
-                        <a href="/archives/2018">
-                            2018
-                        </a>
+                        
+                        <i class="material-icons" style>folder</i>
+                        
+                        <a href="/categories/FrontEnd/">FrontEnd</a>
+                        
+                        
+    
+                        
+                        
+                        <i class="material-icons" style>label</i>
+                        
+                        <a href="/tags/JavaScript/">JavaScript</a>
+                        
                         
                     </div>
                 </div>
             </div>
+    
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h2 id="网页链接"><a href="#网页链接" class="headerlink" title="网页链接"></a>网页链接</h2><p><a href="https://wanmaoor.github.io/SlidesPage/" target="_blank" rel="noopener">Slider Page</a></p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p><a href="https://github.com/wanmaoor/SlidesPage" target="_blank" rel="noopener">Source Code</a></p>
+<h2 id="如何实现点击切换的"><a href="#如何实现点击切换的" class="headerlink" title="如何实现点击切换的?"></a>如何实现点击切换的?</h2><h3 id="如何显示"><a href="#如何显示" class="headerlink" title="如何显示"></a>如何显示</h3><p>网页里有5个可以切换的图片, 它们都是作为各自的<code>div.slide</code>的<code>background</code>存在, 初始化时它们被设置<code>opcacity:0</code>, 都不会显示出来, 只有带有<code>.current</code>的<code>div</code>才能显示出来.这里, 我们默认为第一个slide添加<code>current</code>类</p>
+<h3 id="如何切换"><a href="#如何切换" class="headerlink" title="如何切换"></a>如何切换</h3><p>添加两个按钮, 分别为<code>next</code>, <code>prev</code>.各自绑定点击事件.就<code>next</code>绑定事件为例, </p>
+<ol>
+<li>将当前带有<code>current</code>类的<code>div</code>找到并从它的<code>classList</code>中删除<code>current</code>类</li>
+<li>从删除<code>current</code>类的<code>div</code>往下一个兄弟元素寻找(使用<code>nextElementSibling</code>), 如果有, 则给它的<code>classList</code>添加<code>current</code>类.如果没有, 则给第一个slide添加<code>current</code>类.</li>
+</ol>
+<p><code>prev</code>同理, 不过是把<code>nextElementSibling</code>改为<code>prevElemntSibling</code></p>
+<h3 id="自动切换"><a href="#自动切换" class="headerlink" title="自动切换"></a>自动切换</h3><p>使用<code>setInterval(nextSlide, intervalTime)</code>可以实现自动切换.但是要注意的是, 当点击<code>next</code>按钮时, 必须要清除<code>setInterVal</code>, 否则会出现连续切换图片的bug, 所以每次<code>setInterval()</code>前, <code>clearInterval(intervalId)</code>必须调用, 将每次切换后的时间归零.</p>
+
+                </div>
+            </div>
+    
+            <nav class="post-pagination">
+    
+    <span class="page-number"></span>
+    
+    <a class="older-posts" href="/2019/06/11/JS面试题-函数执行顺序/">
+        次の記事<br>JS面试题--函数执行顺序
+    </a>
+    
+</nav>
+
+    
+            
+
+
         </div>
-        
-
-        <a href="/2018/12/16/CSS-Layout/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            CSS Layout
-                        </div>
-                        <div class="post-item-meta">
-                            2018-12-16
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        
-        
-
-        <a href="/2018/11/26/一次讲完数组操作/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            一次讲完数组操作
-                        </div>
-                        <div class="post-item-meta">
-                            2018-11-26
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        
-        
-
-        <a href="/2018/10/03/em-rem-in-font-size/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            em &amp; rem in font-size
-                        </div>
-                        <div class="post-item-meta">
-                            2018-10-03
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        
-        
-
-        <a href="/2018/08/02/JavaScript的封装/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            JavaScript的封装
-                        </div>
-                        <div class="post-item-meta">
-                            2018-08-02
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        
     </div>
-    
-<div class="pagination ">
-    
-    <a class="pagination-action" href="/archives/" style="opacity: 1">
-        
-            <i class="material-icons pagination-action-icon">
-                chevron_left
-            </i>
-        </a>
-
-        <div class="pagination-indicator">
-            <span>2/2</span>
-        </div>
-
-        
-            <a class="pagination-action" style="opacity: 0">
-                
-                <i class="material-icons pagination-action-icon">
-                    chevron_right
-                </i>
-            </a>
-</div>
-
-
     <div class="single-column-footer">
     Proudly published with Hexo<br>
     
@@ -284,7 +215,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@14.2.1/dist/smooth-scroll.polyfills.min.js" integrity="sha256-CI4Gq5E0io1Pv0xM3qPM+NUIOhbIBvC3GiN1Y4KhXpw=" crossorigin="anonymous"></script>
-<script src="/js/journal.js?21319398"></script>
+<script src="/js/journal.js?85726780"></script>
+
+
 
 </body>
 </html>
