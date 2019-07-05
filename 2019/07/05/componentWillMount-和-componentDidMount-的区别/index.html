@@ -4,12 +4,11 @@
 <html lang xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head><meta name="generator" content="Hexo 3.8.0">
-    <title>Use of &#39;that of&#39; - Oliver</title>
+    <title>componentWillMount 和 componentDidMount 的区别 - Oliver</title>
 <meta charset="utf-8">
 <meta name="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Wannmaor">
-<meta name="description" content="有时我们会见到这样的句子:
-Adam&amp;#39;s problem is similar to John&amp;#39;s...">
+<meta name="description" content="执行顺序​        假如有两个相同的组件,  在各自的compopnentWillMount和compone...">
 <meta name="keywords" content>
 
     <meta charset="utf-8">
@@ -19,7 +18,7 @@ Adam&amp;#39;s problem is similar to John&amp;#39;s...">
     <meta name="renderer" content="webkit">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/journal.css?61156639">
+<link rel="stylesheet" href="/css/journal.css?92896769">
 
 <script src="/js/loadCSS.js"></script>
 <script>
@@ -141,18 +140,18 @@ Adam&amp;#39;s problem is similar to John&amp;#39;s...">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
         <div class="post">
-            <div class="post-head-wrapper-text-only" style="background-image: url('')">
+            <div class="post-head-wrapper" style="background-image: url('/2019/07/05/componentWillMount-和-componentDidMount-的区别/1.jfif')">
                 <div class="post-title">
-                    Use of &#39;that of&#39;
+                    componentWillMount 和 componentDidMount 的区别
                     <div class="post-meta">
-                        <time datetime="2019-06-16T06:05:51.000Z" itemprop="datePublished">
-                            2019-06-16 14:05
+                        <time datetime="2019-07-05T08:39:27.000Z" itemprop="datePublished">
+                            2019-07-05 16:39
                         </time>&nbsp;
                         
                         
                         <i class="material-icons" style>folder</i>
                         
-                        <a href="/categories/English/">English</a>
+                        <a href="/categories/FrontEnd/">FrontEnd</a>
                         
                         
     
@@ -160,7 +159,7 @@ Adam&amp;#39;s problem is similar to John&amp;#39;s...">
                         
                         <i class="material-icons" style>label</i>
                         
-                        <a href="/tags/Grammar/">Grammar</a>
+                        <a href="/tags/React/">React</a>
                         
                         
                     </div>
@@ -169,26 +168,36 @@ Adam&amp;#39;s problem is similar to John&amp;#39;s...">
     
             <div class="post-body-wrapper">
                 <div class="post-body">
-                    <p>有时我们会见到这样的句子:</p>
-<pre><code>Adam&#39;s problem is similar to John&#39;s. //Adam的问题跟John的问题很相似
-</code></pre><p><code>John&#39;s</code>只是一个简单的名词, 可是当我们需要一个长句时该怎么办呢?依葫芦画瓢, 还是这样来:</p>
-<pre><code>Adam&#39;s problem is similar to the majority of people in the western world&#39;s. //Adam的问题和大多数西方世界的人很像
-</code></pre><p><strong>错!!!</strong>不能这样表达, 应该使用<strong><code>that of</code></strong>:</p>
-<pre><code>Adam&#39;s problem is similar to that of the majority of people in the western world.
-</code></pre>
+                    <h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>​        假如有两个相同的组件,  在各自的<code>compopnentWillMount</code>和<code>componentDidMount</code>两个生命周期函数里打一个控制台函数.</p>
+<pre class="line-numbers language-react"><code class="language-react">componentWillMount() {
+    console.log('enter componentWillMount ' + this.props.caption);
+  }
+
+  componentDidMount() {
+    console.log('enter componentDidMount ' + this.props.caption);
+  }
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>     结果并不会与预期相同: 
+</code></pre><pre><code>enter componentWillMount First 
+enter render First 
+enter componentWillMount Second
+enter render Second
+enter componentDidMount First 
+enter componentDidMount Second 
+</code></pre><p>​        可以看到<code>componentWillMount</code>总是在<code>render</code>函数被调用前调用. <code>componentDidMount</code>是在<code>render</code>函数调用完后才开始调用.由于<code>render</code>函数不参与DOM的渲染,而是负责向react库返回JSX对象.所以只有等到react库把<code>render</code>函数返回的JSX对象解析完后才会开始调用各个组件的<code>componentDidMount</code>生命周期函数</p>
+<h2 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h2><p>​        <code>componentWillMount</code>既可以执行在服务端,也可以执行在客户端(即浏览器环境)</p>
+<p>​        <code>componentDidMount</code>只能在客户端执行, 原因也很简单: 服务器上没有浏览器环境,不能渲染DOM树.</p>
+<p>​        所以<code>componentDidMount</code>是只能在浏览器执行.也给开发者很好的地方去做只有浏览器才做的事情,比如Ajax请求.</p>
+
                 </div>
             </div>
     
             <nav class="post-pagination">
     
-    <a class="newer-posts" href="/2019/07/05/componentWillMount-和-componentDidMount-的区别/">
-        Previous post<br>componentWillMount 和 componentDidMount 的区别
-    </a>
-    
     <span class="page-number"></span>
     
-    <a class="older-posts" href="/2019/06/16/Slider-Page/">
-        Next post<br>Slider Page
+    <a class="older-posts" href="/2019/06/16/Use-of-that-of/">
+        Next post<br>Use of &#39;that of&#39;
     </a>
     
 </nav>
@@ -214,7 +223,7 @@ Adam&amp;#39;s problem is similar to John&amp;#39;s...">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@14.2.1/dist/smooth-scroll.polyfills.min.js" integrity="sha256-CI4Gq5E0io1Pv0xM3qPM+NUIOhbIBvC3GiN1Y4KhXpw=" crossorigin="anonymous"></script>
-<script src="/js/journal.js?94136351"></script>
+<script src="/js/journal.js?37096149"></script>
 
 
 
